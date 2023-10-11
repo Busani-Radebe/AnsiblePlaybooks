@@ -1,9 +1,11 @@
 ---
-- name: Reboot All Servers
-  hosts: all  # This assumes you have an inventory file that includes all your servers
-  become: yes  # Use "yes" to become superuser (usually root) to perform the reboot
+- name: Create "busanis scripts" folder on the desktop
+  hosts: all
+  become: yes  # This is used to escalate privileges, typically using sudo
+
   tasks:
-    - name: Reboot servers
-      reboot:
-      async: 0
-      poll: 0
+    - name: Create "busanis scripts" folder
+      file:
+        path: "{{ lookup('env','HOME') }}/Desktop/busanis scripts"
+        state: directory
+      delegate_to: "{{ inventory_hostname }}"
