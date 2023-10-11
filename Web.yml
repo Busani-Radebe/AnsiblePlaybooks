@@ -1,10 +1,23 @@
 ---
-- name: Create 'busanis_scripts' file on desktop
-  hosts: all
-  become: yes  # Run tasks with sudo/root privileges
+- name: Update Servers
+  hosts: all  # You can specify the target servers here, e.g., "web_servers" or "db_servers"
+  become: yes  # This allows you to run commands with sudo privileges
+
   tasks:
-    - name: Create 'busanis_scripts' file
-      copy:
-        content: "{{ lookup('password', '/dev/null chars=ascii_letters,digits length=1000') }}"
-        dest: "~/busanis_scripts"
-        mode: "0644"
+    - name: Update packages
+      apt:
+        update_cache: yes
+        upgrade: dist
+      when: ansible_os_family == 'Debian'  # For Debian/Ubuntu-based systems
+
+    - name: Update packages
+      yum:
+        name: '*'
+        state: latest
+      when: ansible_os_family == 'RedHat'  # For Red Hat/CentOS-based systems
+
+    - name: Restart servers
+      command: reboot
+      async: 0
+      poll: 0
+      ignore_errors: yes
