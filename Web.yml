@@ -1,8 +1,10 @@
 ---
-- name: Print Hello, World!
-  hosts: all
-  become: yes  # This allows the playbook to run with sudo privileges
+- name: Create File on Desktop
+  hosts: desktop-servers
+  become: yes  # To run commands with elevated privileges
 
   tasks:
-    - name: Print Hello, World!
-      command: echo "Hello, World!"
+    - name: Create file on the desktop
+      ansible.builtin.copy:
+        content: "This is the content of the file."
+        dest: "~/Desktop/myfile.txt"
