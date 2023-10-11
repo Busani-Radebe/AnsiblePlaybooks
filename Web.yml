@@ -1,1 +1,19 @@
+---
+- name: Update Ubuntu
+  hosts: your_target_host
+  become: yes  # This allows the playbook to run with sudo privileges
+
+  tasks:
+    - name: Update APT package cache
+      apt:
+        update_cache: yes
+
+    - name: Upgrade all packages
+      apt:
+        upgrade: dist
+
+    - name: Clean up APT cache
+      apt:
+        autoclean: yes
+        autoremove: yes
 
