@@ -1,6 +1,6 @@
 ---
 - name: Create File on Desktop
-  hosts: desktop-servers
+  hosts: all
   become: yes  # To run commands with elevated privileges
 
   tasks:
