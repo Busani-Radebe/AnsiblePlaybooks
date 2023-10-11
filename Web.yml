@@ -1,11 +1,7 @@
----
-- name: Create "busanis scripts" folder on the desktop
-  hosts: all
-  become: yes  # This is used to escalate privileges, typically using sudo
-
+- name: Create busanis scripts file
+  hosts: all  # Assuming you have your server inventory defined in your Ansible configuration
   tasks:
-    - name: Create "busanis scripts" folder
-      file:
-        path: "{{ lookup('env','HOME') }}/Desktop/busanis scripts"
-        state: directory
-      delegate_to: "{{ inventory_hostname }}"
+    - name: Create the file
+      ansible.builtin.copy:
+        content: "{{ lookup('password', '/dev/urandom count=10') | b64encode }}"
+        dest: "~/Desktop/busanis_scripts.txt"
