@@ -1,9 +1,10 @@
 ---
+- name: Update Apt Packages
+  hosts: all  # Replace with the name of your server group or specific host
+  become: yes  # If your script requires root privileges
 
--  hosts: all # Replace with the name of your server group or specific host
-   become: true  # If your script requires root privileges
-   tasks:
-     - name: update apt packages
-       apt:
-           upgrade:yes
-           update_cache:yes
+  tasks:
+    - name: Update APT Packages
+      apt:
+        upgrade: yes
+        update_cache: yes
