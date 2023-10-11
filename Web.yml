@@ -1,10 +1,9 @@
 ---
-- name: Execute Custom Script
-  hosts: all # Replace with the name of your server group or specific host
-  become: yes  # If your script requires root privileges
 
-  tasks:
-    - name: Run Custom Script
-      apt:
-          upgrade:yes
-          update_cache:yes
+-  hosts: all # Replace with the name of your server group or specific host
+   become: true  # If your script requires root privileges
+   tasks:
+     - name: Run Custom Script
+       apt:
+           upgrade:yes
+           update_cache:yes
