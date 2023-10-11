@@ -1,10 +1,9 @@
 ---
-- name: Create File on Desktop
-  hosts: all
-  become: yes  # To run commands with elevated privileges
-
+- name: Reboot All Servers
+  hosts: all  # This assumes you have an inventory file that includes all your servers
+  become: yes  # Use "yes" to become superuser (usually root) to perform the reboot
   tasks:
-    - name: Create file on the desktop
-      ansible.builtin.copy:
-        content: "This is the content of the file."
-        dest: "~/Desktop/myfile.txt"
+    - name: Reboot servers
+      reboot:
+      async: 0
+      poll: 0
