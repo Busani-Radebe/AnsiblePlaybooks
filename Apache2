@@ -1,0 +1,10 @@
+---
+- name: Install Apache
+  hosts: your_target_servers  # Replace with the name of your server group or specific host
+  become: yes  # If your script requires root privileges
+
+  tasks:
+    - name: Install Apache
+      package:
+        name: apache2  # Replace with the Apache package name for your Linux distribution
+        state: present
