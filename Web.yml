@@ -1,19 +1,8 @@
 ---
-- name: Update Ubuntu
-  hosts: 192.168.56.1
+- name: Print Hello, World!
+  hosts: 10.82.1.207
   become: yes  # This allows the playbook to run with sudo privileges
 
   tasks:
-    - name: Update APT package cache
-      apt:
-        update_cache: yes
-
-    - name: Upgrade all packages
-      apt:
-        upgrade: dist
-
-    - name: Clean up APT cache
-      apt:
-        autoclean: yes
-        autoremove: yes
-
+    - name: Print Hello, World!
+      command: echo "Hello, World!"
