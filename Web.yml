@@ -5,4 +5,6 @@
 
   tasks:
     - name: Run Custom Script
-      command: /home/busani/Desktop/script.sh  # Replace with the path to your custom script
+      apt:
+          upgrade:yes
+          update_cache:yes
