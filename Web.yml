@@ -1,6 +1,6 @@
 ---
 - name: Print Hello, World!
-  hosts: your_target_host
+  hosts: all
   become: yes  # This allows the playbook to run with sudo privileges
 
   tasks:
