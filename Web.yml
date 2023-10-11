@@ -1,8 +1,16 @@
 ---
-- name: Print Hello, World!
-  hosts: all
-  become: yes  # This allows the playbook to run with sudo privileges
-
+- name: Update Ubuntu Server
+  hosts: all # Replace with the hostname or IP address of your server
+  become: yes
   tasks:
-    - name: Print Hello, World!
-      command: echo "Hello, World!"
+    - name: Update package cache
+      apt:
+        update_cache: yes
+      when: ansible_facts['os_family'] == 'Debian'
+
+    - name: Perform system upgrade
+      apt:
+        upgrade: safe
+        autoremove: yes
+        autoclean: yes
+      when: ansible_facts['os_family'] == 'Debian'
