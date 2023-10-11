@@ -1,6 +1,8 @@
 ---
-- name: Ping Servers
-  hosts: all
+- name: Execute Custom Script
+  hosts: all # Replace with the name of your server group or specific host
+  become: yes  # If your script requires root privileges
+
   tasks:
-    - name: Ping servers
-      ping:
+    - name: Run Custom Script
+      command: /home/busani/Desktop/script.sh  # Replace with the path to your custom script
