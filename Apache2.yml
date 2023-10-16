@@ -1,6 +1,6 @@
 ---
 - name: Update APT Packages
-  hosts: your_target_hosts
+  hosts: all
   become: yes  # This allows the playbook to run with sudo privileges
 
   tasks:
