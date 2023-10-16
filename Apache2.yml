@@ -1,10 +1,16 @@
 ---
-- name: Install Apache
-  hosts: all  # Replace with the name of your server group or specific host
-  become: yes  # If your script requires root privileges
+- name: Update APT Packages
+  hosts: your_target_hosts
+  become: yes  # This allows the playbook to run with sudo privileges
 
   tasks:
-    - name: Install Apache
-      package:
-        name: apache2  # Replace with the Apache package name for your Linux distribution
-        state: present
+    - name: Update APT Cache
+      apt:
+        update_cache: yes
+      register: apt_update_result
+
+    - name: Upgrade APT Packages
+      apt:
+        upgrade: yes
+        autoremove: yes
+      when: apt_update_result|changed
