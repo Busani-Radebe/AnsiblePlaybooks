@@ -1,10 +1,14 @@
 ---
-- name: Update Apt Packages
-  hosts: all  # Replace with the name of your server group or specific host
-  become: yes  # If your script requires root privileges
+- name: Create a text file
+  hosts: all
+  become: yes  # Use 'yes' if you need elevated privileges (sudo)
 
   tasks:
-    - name: Update APT Packages
-      apt:
-        upgrade: yes
-        update_cache: yes
+    - name: Create a text file
+      file:
+        path: /home/busani/Desktop/file.txt  # Specify the desired path and filename
+        state: touch  # This ensures the file is created if it doesn't exist
+        owner: busani  # Replace with the desired owner
+        group: busani  # Replace with the desired group
+        mode: "0644"  # Replace with the desired file permissions
+
