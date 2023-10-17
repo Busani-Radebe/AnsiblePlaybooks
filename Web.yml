@@ -6,7 +6,7 @@
   tasks:
     - name: Create a text file
       file:
-        path: /home/busani/Desktop/file.txt  # Specify the desired path and filename
+        path: /home/busani/file.txt  # Specify the desired path and filename
         state: touch  # This ensures the file is created if it doesn't exist
         owner: busani  # Replace with the desired owner
         group: busani  # Replace with the desired group
