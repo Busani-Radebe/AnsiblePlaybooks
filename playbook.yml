@@ -1,8 +1,8 @@
 ---
-- hosts: 10.82.2.16
+- name: Configure LAMP and WordPress
+  hosts: [main]  # Replace with the appropriate host or group name from your inventory.ini
   become: true
   gather_facts: true
-
 
   roles:
     - lamp
