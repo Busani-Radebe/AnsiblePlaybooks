@@ -1,11 +1,46 @@
 ---
-- name: Configure LAMP and WordPress
-  hosts: [main]  # Replace with the appropriate host or group name from your inventory.ini
-  become: true
-  gather_facts: true
+- name: Install LAMP Stack
+  hosts: [main]
+  become: yes  # This allows running tasks with sudo privileges
+  tasks:
+    - name: Update apt cache
+      apt:
+        update_cache: yes
 
-  roles:
-    - lamp
-    - apache
-    - mysql
-    - wordpress
+    - name: Install Apache web server
+      apt:
+        name: apache2
+        state: present
+
+    - name: Install MySQL Server
+      apt:
+        name: mysql-server
+        state: present
+
+    - name: Secure MySQL Installation
+      mysql_user:
+        name: root
+        password: your_root_password
+        login_unix_socket: yes
+
+    - name: Install PHP and required modules
+      apt:
+        name: "{{ item }}"
+        state: present
+      with_items:
+        - php
+        - libapache2-mod-php
+        - php-mysql  # Install the PHP MySQL extension
+
+    - name: Enable Apache modules
+      apache2_module:
+        state: present
+        name: "{{ item }}"
+      with_items:
+        - rewrite
+        - php7.4
+
+    - name: Restart Apache service
+      service:
+        name: apache2
+        state: restarted
