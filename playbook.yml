@@ -3,6 +3,10 @@
   hosts: [main]
   become: yes  # This allows running tasks with sudo privileges
   tasks:
+    - name: Your Task Name
+      become: yes
+      ansible_python_interpreter: /usr/bin/python3
+      
     - name: Update apt cache
       apt:
         update_cache: yes
