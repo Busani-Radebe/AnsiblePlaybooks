@@ -1,0 +1,30 @@
+{
+ "collection_info": {
+  "namespace": "chethannkumar",
+  "name": "install_wp_ubuntu",
+  "version": "1.0.0",
+  "authors": [
+   "Chethan Kumar N"
+  ],
+  "readme": "README.md",
+  "tags": [],
+  "description": "Install WordPress on Ubuntu/Debian System using Ansible Playbook",
+  "license": [
+   "GPL-2.0-or-later"
+  ],
+  "license_file": null,
+  "dependencies": {},
+  "repository": "http://example.com/repository",
+  "documentation": null,
+  "homepage": null,
+  "issues": null
+ },
+ "file_manifest_file": {
+  "name": "FILES.json",
+  "ftype": "file",
+  "chksum_type": "sha256",
+  "chksum_sha256": "f1e18f5c1f85acb8854c3f546453f944bcc0aab6bf560ede6e23a05e2f3eda33",
+  "format": 1
+ },
+ "format": 1
+}

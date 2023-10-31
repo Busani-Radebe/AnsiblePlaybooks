@@ -1,0 +1,3 @@
+[qemu]
+ubuntu-on-qemu	ansible_host=192.168.122.134	ansible_ssh_user=chethan
+centos-on-qemu	ansible_host=192.168.122.150	ansible_ssh_user=chethan

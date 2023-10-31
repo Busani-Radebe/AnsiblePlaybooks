@@ -1,0 +1,11 @@
+---
+- hosts: ubuntu-on-qemu
+  become: true
+  gather_facts: true
+
+
+  roles:
+    - lamp
+    - apache
+    - mysql
+    - wordpress

@@ -1,0 +1,27 @@
+---
+# tasks file for lamp
+    - name: Install prerequisites
+      ansible.builtin.apt: 
+        name: aptitude 
+        update_cache: yes 
+        state: latest 
+
+    - name: Install LAMP Packages
+      ansible.builtin.apt: 
+        pkg: 
+          - apache2
+          - default-mysql-server
+          - python3-pymysql
+          - php
+          - php-mysql
+          - libapache2-mod-php
+          - ghostscript
+        update_cache: yes 
+        state: latest
+
+    - name: Install PHP Extensions
+      ansible.builtin.apt: 
+        name: "{{ item }}"
+        update_cache: yes 
+        state: latest
+      loop: "{{ php_modules }}"
