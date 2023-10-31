@@ -1,0 +1,11 @@
+---
+- hosts: 10.82.2.16
+  become: true
+  gather_facts: true
+
+
+  roles:
+    - lamp
+    - apache
+    - mysql
+    - wordpress
