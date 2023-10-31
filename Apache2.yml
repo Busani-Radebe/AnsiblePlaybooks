@@ -1,16 +1,6 @@
 ---
-- name: Update APT Packages
-  hosts: all
-  become: yes  # This allows the playbook to run with sudo privileges
-
+- name: Ping IP addresses of machines
+  hosts: your_target_group  # Replace with the group of machines you want to ping
   tasks:
-    - name: Update APT Cache
-      apt:
-        update_cache: yes
-      register: apt_update_result
-
-    - name: Upgrade APT Packages
-      apt:
-        upgrade: yes
-        autoremove: yes
-      when: apt_update_result|changed
+    - name: Ping the IP addresses
+      ping:
