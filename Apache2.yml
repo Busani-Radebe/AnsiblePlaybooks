@@ -1,6 +1,6 @@
 ---
 - name: Ping IP addresses of machines
-  hosts: your_target_group  # Replace with the group of machines you want to ping
+  hosts: all  # Replace with the group of machines you want to ping
   tasks:
     - name: Ping the IP addresses
       ping:
