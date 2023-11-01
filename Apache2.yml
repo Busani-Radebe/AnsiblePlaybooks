@@ -1,19 +1,12 @@
 ---
-- name: Install Apache2 on Ubuntu
-  hosts: 192.168.8.171
+- name: Disable Apache index.html
+  hosts: your_server_hostname
   become: yes
   tasks:
-    - name: Update apt packages
-      apt:
-        update_cache: yes
-
-    - name: Install Apache2
-      apt:
-        name: apache2
-        state: present
-
-    - name: Enable Apache2 service
-      service:
-        name: apache2
-        state: started
-        enabled: yes
+    - name: Disable default Apache index.html
+      blockinfile:
+        path: /etc/apache2/conf-enabled/localized-defaults.conf  # Path to your Apache configuration file
+        block: |
+          <Directory /var/www/html>
+              Options -Indexes
+          </Directory>
