@@ -1,6 +1,6 @@
 ---
 - name: Disable Apache index.html
-  hosts: your_server_hostname
+  hosts: 192.168.8.171
   become: yes
   tasks:
     - name: Disable default Apache index.html
