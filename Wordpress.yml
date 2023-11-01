@@ -1,0 +1,52 @@
+---
+- name: Download and Deploy WordPress
+  hosts: your_server_hostname
+  become: yes
+  tasks:
+    - name: Install unzip package
+      apt:
+        name: unzip
+        state: present
+      become: yes
+      become_user: root
+      when: ansible_os_family == 'Debian'
+
+    - name: Create directory for WordPress installation
+      file:
+        path: /var/www/html
+        state: directory
+        mode: '0755'
+
+    - name: Download the latest WordPress
+      get_url:
+        url: https://wordpress.org/latest.tar.gz
+        dest: /tmp/latest.tar.gz
+
+    - name: Unarchive WordPress
+      unarchive:
+        src: /tmp/latest.tar.gz
+        dest: /tmp/wordpress
+        remote_src: yes
+
+    - name: Copy WordPress files to /var/www/html
+      copy:
+        src: /tmp/wordpress/.
+        dest: /var/www/html/
+        remote_src: yes
+
+    - name: Set proper permissions
+      file:
+        path: /var/www/html
+        state: directory
+        mode: '0755'
+        recurse: yes
+
+    - name: Clean up temporary files
+      file:
+        path: /tmp/wordpress
+        state: absent
+
+    - name: Remove downloaded archive
+      file:
+        path: /tmp/latest.tar.gz
+        state: absent
