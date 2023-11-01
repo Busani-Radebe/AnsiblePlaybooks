@@ -1,50 +1,8 @@
+#
+#About: This will install MySql
+#
 ---
-- name: Install LAMP Stack
-  hosts: [main]
-  become: yes  # This allows running tasks with sudo privileges
-  tasks:
-    - name: Your Task Name
-      become: yes
-      ansible_python_interpreter: /usr/bin/python3
-      
-    - name: Update apt cache
-      apt:
-        update_cache: yes
-
-    - name: Install Apache web server
-      apt:
-        name: apache2
-        state: present
-
-    - name: Install MySQL Server
-      apt:
-        name: mysql-server
-        state: present
-
-    - name: Secure MySQL Installation
-      mysql_user:
-        name: root
-        password: your_root_password
-        login_unix_socket: yes
-
-    - name: Install PHP and required modules
-      apt:
-        name: "{{ item }}"
-        state: present
-      with_items:
-        - php
-        - libapache2-mod-php
-        - php-mysql  # Install the PHP MySQL extension
-
-    - name: Enable Apache modules
-      apache2_module:
-        state: present
-        name: "{{ item }}"
-      with_items:
-        - rewrite
-        - php7.4
-
-    - name: Restart Apache service
-      service:
-        name: apache2
-        state: restarted
+- hosts: '{{inventory}}'
+  become: yes
+  roles:
+  - mysq
