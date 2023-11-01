@@ -2,7 +2,7 @@
 #About: This will install MySql
 #
 ---
-- hosts: '{{inventory}}'
+- hosts: '192.168.8.171'
   become: yes
   roles:
   - mysql
