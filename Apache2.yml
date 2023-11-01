@@ -1,6 +1,19 @@
 ---
-- name: Ping IP addresses of machines
-  hosts: all  # Replace with the group of machines you want to ping
+- name: Install Apache2 on Ubuntu
+  hosts: 192.168.8.171
+  become: yes
   tasks:
-    - name: Ping the IP addresses
-      ping:
+    - name: Update apt packages
+      apt:
+        update_cache: yes
+
+    - name: Install Apache2
+      apt:
+        name: apache2
+        state: present
+
+    - name: Enable Apache2 service
+      service:
+        name: apache2
+        state: started
+        enabled: yes
