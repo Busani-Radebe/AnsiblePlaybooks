@@ -1,7 +1,7 @@
 
 ---
 - name: install zsh
-  hosts: "{{ hosts }}"
+  hosts: 192.168.8.171
   become: yes
   tasks:
     - name: install zsh
